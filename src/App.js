@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Simple Counter App</h1>
+      <h1>Simple Counter App - Muraly </h1>
       <h2 data-testid="count-value">{count}</h2>
 
       <button onClick={increment}>Increment</button>
