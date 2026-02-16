@@ -23,7 +23,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # required for SonarCloud
+          fetch-depth: 0   # required for SonarCloud test
 
       - name: Setup Node
         uses: actions/setup-node@v4
