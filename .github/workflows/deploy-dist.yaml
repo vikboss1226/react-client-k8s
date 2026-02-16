@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 24
 
-      - name: print node js version 
+      - name: print node js version here
         run : node --version      
 
       - name: Install Dependencies
