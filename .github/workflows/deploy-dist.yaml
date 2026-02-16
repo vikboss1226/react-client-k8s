@@ -75,7 +75,7 @@ build-job:
           path: build/
 
 
-  deploy:
+deploy:
     # Add a dependency to the build job
     needs: build-job
 
