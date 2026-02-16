@@ -1,9 +1,6 @@
 name: deploydist
 
-on:
-  push:
-    branches:
-      - main
+on: [push, workflow_action]
 
 jobs:
   test-job:
@@ -19,9 +16,17 @@ jobs:
           node-version: 24
 
       - name: Print Node.js Version
-        run: node --version      
+        run: node --version    
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}  
 
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run Unit Tests
@@ -43,7 +48,15 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install Dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}  
+
+      - name: Install Dependencies      
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build Application
