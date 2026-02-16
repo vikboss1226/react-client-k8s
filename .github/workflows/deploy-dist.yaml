@@ -1,5 +1,4 @@
 name: deploydist
-
 on:  
   push: 
     branches: 
@@ -8,7 +7,7 @@ on:
     paths-ignore: 
        - README.md
        - '.github/workflows/*'
-    workflow_dispatch: 
+  workflow_dispatch: 
 
 jobs:
   test-job:
