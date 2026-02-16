@@ -41,7 +41,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
-          SONAR_TOKEN: vikboss1226
+          SONAR_TOKEN: 42131a2647691ea6b0d78b2edf9bcf4411f09405
         with:
           args: >
             -Dsonar.organization=vikboss1226
