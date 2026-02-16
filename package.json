@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://vikboss1226.github.io/react-client-k8s",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
