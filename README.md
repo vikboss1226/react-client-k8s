@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 # react-client-k8ss
-=======
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped hello with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -71,4 +69,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 77b7f40f7b360c2ff3f40d53f9143ddf2a6e782d
