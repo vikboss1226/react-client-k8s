@@ -1,13 +1,11 @@
 name: deploydist
-on:  
-  push: 
-    branches: 
-       - main 
-       - feature/**
-    paths-ignore: 
-       - README.md
-       - '.github/workflows/*'
-  workflow_dispatch: 
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+  workflow_dispatch:
 
 jobs:
   test-job:
@@ -17,54 +15,27 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node App
+        uses: ./.github/actions/setup-node-app
         with:
           node-version: 24
-
-      - name: Print Node.js Version
-        run: node --version    
-
-      - name: Cache dependencies
-        uses: actions/cache@v5
-        id: cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}  
-
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
 
       - name: Run Unit Tests
         run: npm test -- --watchAll=false
 
-      - name: On Job Complete
-        run: echo "Good try Muraly - job completed."
 
   build-job:
     runs-on: ubuntu-latest
-    needs: test-job   # Build runs only if test-job succeeds
+    needs: test-job
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node App
+        uses: ./.github/actions/setup-node-app
         with:
           node-version: 24
-
-      - name: Cache dependencies
-        uses: actions/cache@v5
-        id: cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}  
-
-      - name: Install Dependencies      
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
 
       - name: Build Application
         run: npm run build
@@ -74,13 +45,19 @@ jobs:
         with:
           name: build-files
           path: build/
-  
-  deploy-job: 
+
+
+  deploy-job:
     runs-on: ubuntu-latest
-    needs: build-job 
+    needs: build-job
     environment: production
 
-    steps: 
-      - name: Deploy Artifact
-        run: echo "Deployment Job Initiated" 
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: build/
 
+      - name: Deploy Artifact
+        run: echo "Deployment Job Initiated"
