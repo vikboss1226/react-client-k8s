@@ -54,3 +54,12 @@ jobs:
         with:
           name: build-files
           path: build/
+  
+  deploy-job: 
+    runs-on: ubuntu-latest
+    needs: build-job 
+    environment: production
+    steps: 
+      -name: Deploy Artifact 
+      run: echo "Deployment Job Initiated" 
+
