@@ -59,7 +59,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-job 
     environment: production
+
     steps: 
-      -name: Deploy Artifact 
-      run: echo "Deployment Job Initiated" 
+      - name: Deploy Artifact
+        run: echo "Deployment Job Initiated" 
 
